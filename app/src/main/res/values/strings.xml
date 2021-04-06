@@ -1,8 +1,10 @@
 <resources>
-    <string name="app_name">Github-User</string>
+    <string name="app_name">Gibeng</string>
     <string name="github_user_title">GitHub User</string>
     <string name="username">Username</string>
     <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="tab_follower">Followers</string>
+    <string name="tab_following">Following</string>
     <string name="name">Jake Wharton</string>
     <string name="company">Company Inc</string>
     <string name="location">Banyuwangi, Jawa Timur</string>
@@ -10,6 +12,9 @@
     <string name="valueNumeric">9999</string>
     <string name="followers">Followers</string>
     <string name="following">Following</string>
+    <string name="search_github">Find people on github</string>
+    <string name="image_search_desc">Image Search</string>
+    <string name="main_search_desc">Get to know everyone on github!</string>
     <string-array name="username">
         <item>JakeWharton</item>
         <item>amitshekhariitbhu</item>
@@ -106,4 +111,6 @@
         <item>@drawable/user9</item>
         <item>@drawable/user10</item>
     </array>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="image_profile">Image Profile</string>
 </resources>
