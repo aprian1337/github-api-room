@@ -4,48 +4,40 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.aprian1337.github_user.api.ApiClient
-import com.aprian1337.github_user.model.DetailResponse
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import androidx.lifecycle.viewModelScope
+import com.aprian1337.github_user.model.User
+import com.aprian1337.github_user.repository.MainRepository
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailUserViewModel : ViewModel() {
-    val user = MutableLiveData<DetailResponse>()
+class DetailUserViewModel constructor(private val repository: MainRepository) : ViewModel() {
+    val user = MutableLiveData<User>()
 
-    fun setDetail(username: String){
-        CoroutineScope(Dispatchers.IO).launch {
+    fun setUser(username: String) {
+        viewModelScope.launch {
             try {
-                ApiClient.apiInstance
-                    .getDetail(username)
-                    .enqueue(object: Callback<DetailResponse>{
-                        override fun onResponse(
-                            call: Call<DetailResponse>,
-                            response: Response<DetailResponse>
-                        ) {
-                            if(response.isSuccessful){
-                                println("AAAAAAAAAAZZZZ")
-                                println(response.body().toString())
-                                user.postValue(response.body())
-                            }
-                        }
+                val repository = repository.getUser(username)
+                repository.enqueue(object : Callback<User> {
+                    override fun onResponse(
+                        call: Call<User>,
+                        response: Response<User>
+                    ) {
+                        if (response.isSuccessful) user.postValue(response.body())
+                    }
 
-                        override fun onFailure(call: Call<DetailResponse>, t: Throwable) {
-                            Log.d("err", t.message.toString())
-                        }
-
-                    })
+                    override fun onFailure(call: Call<User>, t: Throwable) {
+                        Log.d("fail", t.message.toString())
+                    }
+                })
             }catch (t: Throwable){
-                Log.d("err", t.message.toString())
+                Log.d("throw", t.message.toString())
             }
-
         }
     }
 
-    fun getDetail(): LiveData<DetailResponse>{
+    fun getUser(): LiveData<User> {
         return user
     }
 }

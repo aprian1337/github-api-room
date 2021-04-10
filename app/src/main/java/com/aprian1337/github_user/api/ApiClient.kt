@@ -1,5 +1,6 @@
 package com.aprian1337.github_user.api
 
+import com.aprian1337.github_user.utils.Constants
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -8,6 +9,8 @@ object ApiClient {
         .baseUrl(Constants.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
-    
-    val apiInstance: ApiInterface = retrofit.create(ApiInterface::class.java)
+
+    val api: ApiService by lazy {
+        retrofit.create(ApiService::class.java)
+    }
 }

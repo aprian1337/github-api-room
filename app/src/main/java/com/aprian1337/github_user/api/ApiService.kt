@@ -1,19 +1,38 @@
 package com.aprian1337.github_user.api
 
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import com.aprian1337.github_user.model.User
+import com.aprian1337.github_user.model.UserResponse
+import com.aprian1337.github_user.utils.Constants
+import retrofit2.Call
+import retrofit2.http.GET
+import retrofit2.http.Headers
+import retrofit2.http.Path
+import retrofit2.http.Query
 
-val moshi = Moshi.Builder()
-    .add(KotlinJsonAdapterFactory())
-    .build()
+interface ApiService {
+    @GET(Constants.ENDPOINT_SEARCH)
+    @Headers("Authorization: token ${Constants.AUTH_TOKEN}")
+    fun getSearchUsers(
+        @Query("q") query : String,
+        @Query("per_page") per_page : Int = 50
+    ) : Call<UserResponse>
 
-private val retrofit = Retrofit.Builder()
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
-    .baseUrl(Constants.BASE_URL)
-    .build()
+    @GET(Constants.ENDPOINT_DETAIL)
+    @Headers("Authorization: token ${Constants.AUTH_TOKEN}")
+    fun getUser(
+        @Path("username") username: String
+    ) : Call<User>
 
-object ApiUsers {
-    val retrofitService = retrofit.create(ApiInterface::class.java)
+
+    @GET(Constants.ENDPOINT_DETAIL_FOLLOWING)
+    @Headers("Authorization: token ${Constants.AUTH_TOKEN}")
+    fun getFollowing(
+        @Path("username") username: String
+    ) : Call<List<User>>
+
+    @GET(Constants.ENDPOINT_DETAIL_FOLLOWERS)
+    @Headers("Authorization: token ${Constants.AUTH_TOKEN}")
+    fun getFollowers(
+        @Path("username") username: String
+    ) : Call<List<User>>
 }

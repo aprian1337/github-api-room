@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gibeng</string>
+    <string name="github_user_title">GitHub User</string>
+    <string name="username">Nutzername</string>
+    <string name="tab_follower">Anhänger</string>
+    <string name="tab_following">Im Folgenden</string>
+    <string name="repository">Repository</string>
+    <string name="followers">Anhänger</string>
+    <string name="following">Im Folgenden</string>
+    <string name="search_github">Finde Leute auf Github</string>
+    <string name="image_search_desc">Bildersuche</string>
+    <string name="main_search_desc">Lernen Sie alle auf Github kennen!</string>
+    <string name="change_language">Sprache ändern</string>
+    <string name="image_profile">Bildprofil</string>
+    <string name="company">Unternehmen</string>
+    <string name="image_logo">Bild Logo</string>
+    <string name="background">Hintergrund</string>
+    <string name="empty_data">Daten nicht gefunden</string>
+</resources>

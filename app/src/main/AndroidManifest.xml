@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GithubUser">
         <activity android:name=".ui.detail.DetailUserActivity"></activity>
-        <activity android:name=".SplashScreenActivity" android:theme="@style/Theme.Design.Light.NoActionBar">
+        <activity android:name=".ui.SplashScreenActivity" android:theme="@style/Theme.Design.Light.NoActionBar">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.MainActivity"></activity>
+        <activity android:name=".ui.search.SearchActivity"></activity>
     </application>
 
 </manifest>
