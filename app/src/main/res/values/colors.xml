@@ -11,4 +11,5 @@
     <color name="light2">#FFE7BE</color>
     <color name="orange">#ffffbb33</color>
     <color name="orange_dark">#FF9F54</color>
+    <color name="red">#FF0000</color>
 </resources>
