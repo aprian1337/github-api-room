@@ -6,12 +6,14 @@ import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.aprian1337.github_user.R
-import com.aprian1337.github_user.api.ApiClient
+import com.aprian1337.github_user.data.api.ApiClient
 import com.aprian1337.github_user.databinding.ActivityDetailUserBinding
 import com.aprian1337.github_user.repository.MainRepository
 import com.bumptech.glide.Glide
@@ -66,6 +68,18 @@ class DetailUserActivity : AppCompatActivity() {
             }
             showLoading(false)
         })
+
+        var flag = false
+
+        binding.favBtn.setOnClickListener{
+            if(flag){
+                binding.favBtn.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.ic_baseline_favorite_24))
+                flag = false
+            }else{
+                binding.favBtn.setImageDrawable(ContextCompat.getDrawable(applicationContext, R.drawable.ic_baseline_favorite_border_24))
+                flag = true
+            }
+        }
 
         val sectionsPagerAdapter = username?.let { SectionsPagerAdapter(it, this@DetailUserActivity) }
         val viewPager: ViewPager2 = binding.viewPager
