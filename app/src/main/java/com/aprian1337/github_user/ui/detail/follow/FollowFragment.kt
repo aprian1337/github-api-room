@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aprian1337.github_user.R
-import com.aprian1337.github_user.api.ApiClient
+import com.aprian1337.github_user.data.api.ApiClient
 import com.aprian1337.github_user.databinding.FragmentFollowBinding
 import com.aprian1337.github_user.repository.MainRepository
 

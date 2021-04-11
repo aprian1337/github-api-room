@@ -1,4 +1,4 @@
-package com.aprian1337.github_user.api
+package com.aprian1337.github_user.data.api
 
 import com.aprian1337.github_user.utils.Constants
 import retrofit2.Retrofit
