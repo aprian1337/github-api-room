@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Gibeng</string>
+    <string name="github_user_title">GitHub User</string>
+    <string name="username">Nama Pengguna</string>
+    <string name="tab_follower">Pengikut</string>
+    <string name="tab_following">Diikuti</string>
+    <string name="repository">Repositori</string>
+    <string name="followers">Pengikut</string>
+    <string name="following">Diikuti</string>
+    <string name="search_github">Cari seseorang di github</string>
+    <string name="image_search_desc">Gambar</string>
+    <string name="main_search_desc">Kenali semua orang di github!</string>
+    <string name="change_language">Ubah bahasa</string>
+    <string name="image_profile">Profil gambar</string>
+    <string name="company">Perusahaan</string>
+    <string name="image_logo">Gambar Logo</string>
+    <string name="background">Latar Belakang</string>
+    <string name="empty_data">Data tidak ditemukan</string>
+    <string name="menu">menu</string>
+    <string name="reminder_message">Ayo bangun! Yuk kita buka aplikasi tersayang kita ini untuk melihat orang hebat di github :)</string>
+    <string name="general">General</string>
+</resources>
