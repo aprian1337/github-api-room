@@ -6,27 +6,30 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = [FavoriteUser::class], version = 1)
-abstract class AppDatabase: RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
     abstract fun favoriteUserDAO(): FavoriteUserDAO
 
-    companion object{
+    companion object {
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
-        fun getDatabase(context: Context): AppDatabase{
-            val tempInstance = INSTANCE
-            if(tempInstance != null){
-                return tempInstance
+        fun getDatabase(context: Context): AppDatabase? {
+            if (INSTANCE == null) {
+                synchronized(AppDatabase::class) {
+                    INSTANCE = Room.databaseBuilder(
+                        context.applicationContext,
+                        AppDatabase::class.java,
+                        "github_db"
+                    ).build()
+                }
+                return INSTANCE
             }
-            synchronized(this){
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    AppDatabase::class.java,
-                    "github_db"
-                ).build()
-                INSTANCE = instance
-                return instance
-            }
+            return INSTANCE
         }
+
+        fun destroyDatabase() {
+            INSTANCE = null
+        }
+
     }
 }
