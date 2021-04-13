@@ -1,5 +1,6 @@
 package com.aprian1337.github_user.data.room
 
+import android.database.Cursor
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.aprian1337.github_user.utils.Constants
@@ -11,6 +12,9 @@ interface FavoriteUserDAO {
 
     @Query("SELECT * FROM ${Constants.TABLE_FAVORITE}")
     fun getAllFav(): LiveData<List<FavoriteUser>>
+
+    @Query("SELECT * FROM ${Constants.TABLE_FAVORITE}")
+    fun getAllFavConsumer(): Cursor
 
     @Delete
     suspend fun deleteFav(favoriteUser: FavoriteUser)

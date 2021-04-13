@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.lifecycle.ViewModelProvider
@@ -18,8 +17,8 @@ import com.aprian1337.github_user.repository.MainRepository
 import com.aprian1337.github_user.ui.detail.DetailUserActivity
 import com.aprian1337.github_user.ui.favorite.FavoriteActivity
 import com.aprian1337.github_user.ui.setting.SettingActivity
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.*
-
 
 class SearchActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchBinding
@@ -58,7 +57,7 @@ class SearchActivity : AppCompatActivity() {
             })
             viewModel.getSearchUser().observe(this@SearchActivity, {
                 if (it.isNullOrEmpty()) {
-                    Toast.makeText(applicationContext, emptyMessage, Toast.LENGTH_LONG).show()
+                    showSnackbar(binding.root, emptyMessage)
                     showLoading(false)
                 } else {
                     adapter.setUsers(it)
@@ -118,6 +117,19 @@ class SearchActivity : AppCompatActivity() {
         Intent(this@SearchActivity, DetailUserActivity::class.java).apply {
             putExtra(DetailUserActivity.EXTRA_USERNAME, user.login)
             startActivity(this)
+        }
+    }
+
+    private fun showSnackbar(view: View, message: String){
+        val snackBar = Snackbar.make(
+            view, message,
+            Snackbar.LENGTH_LONG
+        )
+        with(snackBar) {
+            this.setAction("Dismiss") {
+                this.dismiss()
+            }
+            this.show()
         }
     }
 }

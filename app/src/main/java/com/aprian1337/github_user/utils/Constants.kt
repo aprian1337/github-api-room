@@ -15,5 +15,6 @@ class Constants {
         const val MINUTE_TIME = 0
         const val SECOND_TIME = 0
         const val ID_REPEATING = 101
+        const val AUTHORITY = "com.aprian1337.github_user"
     }
 }
