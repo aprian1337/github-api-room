@@ -31,7 +31,7 @@
             android:clickable="true"
             android:focusable="true"
             app:backgroundTint="@color/white"
-            app:srcCompat="@drawable/ic_baseline_favorite_24"
+            app:srcCompat="@drawable/ic_baseline_favorite_border_24"
             app:rippleColor="@color/red"
             app:tint="@color/red"
             />
