@@ -1,6 +1,7 @@
 package com.aprian1337.github_user.model
 
 data class User(
+    val id : Int,
     val login : String,
     val html_url : String,
     val avatar_url: String,

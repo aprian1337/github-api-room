@@ -1,12 +1,17 @@
 package com.aprian1337.github_user.ui.detail
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.aprian1337.github_user.data.room.AppDatabase
+import com.aprian1337.github_user.data.room.FavoriteUser
 import com.aprian1337.github_user.model.User
 import com.aprian1337.github_user.repository.MainRepository
+import com.aprian1337.github_user.repository.RoomRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
@@ -14,6 +19,8 @@ import retrofit2.Response
 
 class DetailUserViewModel constructor(private val repository: MainRepository) : ViewModel() {
     val user = MutableLiveData<User>()
+    private lateinit var favUser : LiveData<FavoriteUser>
+    val result = MutableLiveData<Int>()
 
     fun setUser(username: String) {
         viewModelScope.launch {
@@ -37,7 +44,45 @@ class DetailUserViewModel constructor(private val repository: MainRepository) : 
         }
     }
 
-    fun getUser(): LiveData<User> {
+    fun addFav(favoriteUser: FavoriteUser, context: Context){
+        val favDao = AppDatabase.getDatabase(context)?.favoriteUserDAO()
+        val repository = favDao?.let { RoomRepository(it) }
+        viewModelScope.launch(Dispatchers.IO) {
+            if (repository != null) {
+                repository.addFav(favoriteUser)
+            }
+        }
+    }
+
+    fun deleteFav(favoriteUser: FavoriteUser, context: Context){
+        val favDao = AppDatabase.getDatabase(context)?.favoriteUserDAO()
+        val repository = favDao?.let { RoomRepository(it) }
+        viewModelScope.launch(Dispatchers.IO) {
+            if (repository != null) {
+                Log.d("CEKKK", favoriteUser.login)
+                repository.deleteFav(favoriteUser)
+            }
+        }
+    }
+
+    fun getFav(id: Int, context: Context) : LiveData<Int>{
+        val favDao = AppDatabase.getDatabase(context)?.favoriteUserDAO()
+        val repository = favDao?.let { RoomRepository(it) }
+        Log.d("CEK USERNAME", id.toString())
+        viewModelScope.launch(Dispatchers.IO) {
+            if (repository != null) {
+                Log.d("CEK VIEWMODEL", repository.getFav(id).toString())
+                result.postValue(repository.getFav(id))
+            }
+        }
+        return result
+    }
+
+    fun getUser() : LiveData<User>{
         return user
     }
+
+//    fun getFavUser() : LiveData<FavoriteUser>? {
+//        favUser =
+//    }
 }
