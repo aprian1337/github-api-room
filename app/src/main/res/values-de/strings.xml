@@ -17,4 +17,7 @@
     <string name="image_logo">Bild Logo</string>
     <string name="background">Hintergrund</string>
     <string name="empty_data">Daten nicht gefunden</string>
+    <string name="menu">menu</string>
+    <string name="reminder_message">Aufwachen! Lassen Sie uns unsere liebste Anwendung öffnen, um großartige Leute auf Github zu sehen :)</string>
+    <string name="general">General</string>
 </resources>

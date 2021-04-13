@@ -17,4 +17,7 @@
     <string name="image_logo">Gambar Logo</string>
     <string name="background">Latar Belakang</string>
     <string name="empty_data">Data tidak ditemukan</string>
+    <string name="menu">menu</string>
+    <string name="reminder_message">Ayo bangun! Yuk kita buka aplikasi tersayang kita ini untuk melihat orang hebat di github :)</string>
+    <string name="general">General</string>
 </resources>

@@ -16,4 +16,7 @@
     <string name="image_logo">Image Logo</string>
     <string name="background">Background</string>
     <string name="empty_data">Data not found</string>
+    <string name="menu">menu</string>
+    <string name="reminder_message">Wake up! Let\'s open our dearest application to see great people on github :)</string>
+    <string name="general">General</string>
 </resources>
