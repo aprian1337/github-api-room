@@ -3,10 +3,9 @@ package com.aprian1337.github_user.repository
 import androidx.lifecycle.LiveData
 import com.aprian1337.github_user.data.room.FavoriteUser
 import com.aprian1337.github_user.data.room.FavoriteUserDAO
-import java.util.concurrent.Flow
 
 class RoomRepository(private val favUserDao : FavoriteUserDAO) {
-    val loadAllFav : LiveData<List<FavoriteUser>> = favUserDao.loadAllFav()
+    val loadAllFav : LiveData<List<FavoriteUser>> = favUserDao.getAllFav()
 
     suspend fun addFav(favoriteUser :FavoriteUser){
         favUserDao.addFav(favoriteUser)

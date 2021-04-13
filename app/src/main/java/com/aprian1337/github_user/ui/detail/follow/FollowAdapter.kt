@@ -3,7 +3,7 @@ package com.aprian1337.github_user.ui.detail.follow
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.aprian1337.github_user.databinding.ItemRowFollowBinding
+import com.aprian1337.github_user.databinding.ItemRowUserWithCircleImageBinding
 import com.aprian1337.github_user.model.User
 import com.bumptech.glide.Glide
 
@@ -11,7 +11,7 @@ class FollowAdapter : RecyclerView.Adapter<FollowAdapter.MainViewHolder>() {
 
     private var follows = mutableListOf<User>()
 
-    inner class MainViewHolder(val binding: ItemRowFollowBinding) : RecyclerView.ViewHolder(binding.root)
+    inner class MainViewHolder(val binding: ItemRowUserWithCircleImageBinding) : RecyclerView.ViewHolder(binding.root)
 
     fun setFollows(listUser : List<User>){
         follows = listUser.toMutableList()
@@ -19,7 +19,7 @@ class FollowAdapter : RecyclerView.Adapter<FollowAdapter.MainViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
-        val binding = ItemRowFollowBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemRowUserWithCircleImageBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MainViewHolder(binding)
     }
 

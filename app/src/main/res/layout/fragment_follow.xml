@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_row_follow"
+        tools:listitem="@layout/item_row_user_with_circle_image"
         />
 
     <ProgressBar
@@ -25,4 +25,5 @@
         app:layout_constraintEnd_toEndOf="@+id/rv_follow"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/rv_follow" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

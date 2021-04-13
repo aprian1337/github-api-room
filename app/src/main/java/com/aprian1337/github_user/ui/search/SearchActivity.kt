@@ -2,7 +2,6 @@ package com.aprian1337.github_user.ui.search
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -17,7 +16,10 @@ import com.aprian1337.github_user.databinding.ActivitySearchBinding
 import com.aprian1337.github_user.model.User
 import com.aprian1337.github_user.repository.MainRepository
 import com.aprian1337.github_user.ui.detail.DetailUserActivity
+import com.aprian1337.github_user.ui.favorite.FavoriteActivity
+import com.aprian1337.github_user.ui.setting.SettingActivity
 import kotlinx.coroutines.*
+
 
 class SearchActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchBinding
@@ -41,7 +43,7 @@ class SearchActivity : AppCompatActivity() {
                         showLoading(true)
                         CoroutineScope(Dispatchers.Default).launch {
                             viewModel.setSearchUsers(query)
-                            runOnUiThread{
+                            runOnUiThread {
                                 showLoading(true)
                             }
                         }
@@ -55,10 +57,10 @@ class SearchActivity : AppCompatActivity() {
                 }
             })
             viewModel.getSearchUser().observe(this@SearchActivity, {
-                if(it.isNullOrEmpty()){
+                if (it.isNullOrEmpty()) {
                     Toast.makeText(applicationContext, emptyMessage, Toast.LENGTH_LONG).show()
                     showLoading(false)
-                }else {
+                } else {
                     adapter.setUsers(it)
                     showLoading(false)
                     binding.apply {
@@ -69,7 +71,7 @@ class SearchActivity : AppCompatActivity() {
             })
         }
 
-        adapter.setOnItemClickCallback(object : SearchAdapter.OnItemClickCallback{
+        adapter.setOnItemClickCallback(object : SearchAdapter.OnItemClickCallback {
             override fun onItemClicked(data: User) {
                 selectedUser(data)
             }
@@ -93,7 +95,6 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
-
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
         inflater.inflate(R.menu.option_menu, menu)
@@ -101,9 +102,14 @@ class SearchActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_1) {
-            val mIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)
-            startActivity(mIntent)
+        if(item.itemId == R.id.menu_fav){
+            Intent(this@SearchActivity, FavoriteActivity::class.java).apply {
+                startActivity(this)
+            }
+        }else if(item.itemId == R.id.menu_setting){
+            Intent(this@SearchActivity, SettingActivity::class.java).apply {
+                startActivity(this)
+            }
         }
         return super.onOptionsItemSelected(item)
     }

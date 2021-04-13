@@ -2,12 +2,9 @@ package com.aprian1337.github_user.ui.detail
 
 import android.content.Intent
 import android.os.Bundle
-import android.provider.Settings
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -18,7 +15,10 @@ import com.aprian1337.github_user.data.api.ApiClient
 import com.aprian1337.github_user.data.room.FavoriteUser
 import com.aprian1337.github_user.databinding.ActivityDetailUserBinding
 import com.aprian1337.github_user.repository.MainRepository
+import com.aprian1337.github_user.ui.setting.SettingActivity
+import com.aprian1337.github_user.ui.favorite.FavoriteActivity
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.runBlocking
@@ -42,6 +42,7 @@ class DetailUserActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailUserBinding.inflate(layoutInflater)
+        supportActionBar?.title = "Detail User"
         setContentView(binding.root)
         val username = intent.getStringExtra(EXTRA_USERNAME)
         viewModel = ViewModelProvider(this, DetailViewModelFactory(MainRepository(ApiClient))).get(
@@ -105,8 +106,17 @@ class DetailUserActivity : AppCompatActivity() {
                     )
                 )
                 viewModel.deleteFav(favoriteUser, this)
-                Toast.makeText(this, "User successfully remove from favorite", Toast.LENGTH_LONG)
-                    .show()
+
+                val snackBar = Snackbar.make(
+                    it, "User removed from favorite",
+                    Snackbar.LENGTH_LONG
+                )
+                with(snackBar) {
+                    this.setAction("DISMISS"){
+                        this.dismiss()
+                    }
+                    this.show()
+                }
                 flag = 0
             } else {
                 binding.favBtn.setImageDrawable(
@@ -116,8 +126,16 @@ class DetailUserActivity : AppCompatActivity() {
                     )
                 )
                 viewModel.addFav(favoriteUser, this)
-                Toast.makeText(this, "User successfully added to favorite", Toast.LENGTH_LONG)
-                    .show()
+                val snackBar = Snackbar.make(
+                    it, "User successfully added to favorite",
+                    Snackbar.LENGTH_LONG
+                )
+                with(snackBar) {
+                    this.setAction("DISMISS"){
+                        this.dismiss()
+                    }
+                    this.show()
+                }
                 flag = 1
             }
         }
@@ -147,9 +165,14 @@ class DetailUserActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_1) {
-            val mIntent = Intent(Settings.ACTION_LOCALE_SETTINGS)
-            startActivity(mIntent)
+        if(item.itemId == R.id.menu_fav){
+            Intent(this@DetailUserActivity, FavoriteActivity::class.java).apply {
+                startActivity(this)
+            }
+        }else if(item.itemId == R.id.menu_setting){
+            Intent(this@DetailUserActivity, SettingActivity::class.java).apply {
+                startActivity(this)
+            }
         }
         return super.onOptionsItemSelected(item)
     }

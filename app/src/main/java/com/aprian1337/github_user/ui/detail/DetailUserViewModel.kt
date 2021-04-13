@@ -17,9 +17,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailUserViewModel constructor(private val repository: MainRepository) : ViewModel() {
+class DetailUserViewModel(private val repository: MainRepository) : ViewModel() {
     val user = MutableLiveData<User>()
-    private lateinit var favUser : LiveData<FavoriteUser>
     val result = MutableLiveData<Int>()
 
     fun setUser(username: String) {
@@ -59,7 +58,6 @@ class DetailUserViewModel constructor(private val repository: MainRepository) : 
         val repository = favDao?.let { RoomRepository(it) }
         viewModelScope.launch(Dispatchers.IO) {
             if (repository != null) {
-                Log.d("CEKKK", favoriteUser.login)
                 repository.deleteFav(favoriteUser)
             }
         }
@@ -68,10 +66,8 @@ class DetailUserViewModel constructor(private val repository: MainRepository) : 
     fun getFav(id: Int, context: Context) : LiveData<Int>{
         val favDao = AppDatabase.getDatabase(context)?.favoriteUserDAO()
         val repository = favDao?.let { RoomRepository(it) }
-        Log.d("CEK USERNAME", id.toString())
         viewModelScope.launch(Dispatchers.IO) {
             if (repository != null) {
-                Log.d("CEK VIEWMODEL", repository.getFav(id).toString())
                 result.postValue(repository.getFav(id))
             }
         }
@@ -81,8 +77,4 @@ class DetailUserViewModel constructor(private val repository: MainRepository) : 
     fun getUser() : LiveData<User>{
         return user
     }
-
-//    fun getFavUser() : LiveData<FavoriteUser>? {
-//        favUser =
-//    }
 }

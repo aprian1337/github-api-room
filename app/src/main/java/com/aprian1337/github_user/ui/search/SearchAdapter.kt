@@ -34,7 +34,7 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.MainViewHolder>() {
         with(holder.binding) {
             tvUsername.text = users.login
             tvUrl.text = users.html_url
-            Glide.with(holder.itemView.context)
+            Glide.with(root.context)
                 .load(users.avatar_url)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(imgAvatar)
