@@ -1,31 +1,20 @@
 package com.aprian1337.github_user.data.room
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface FavoriteUserDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun addFav(username: String, avatar_url: String)
+    suspend fun addFav(favoriteUser : FavoriteUser)
 
     @Query("SELECT * FROM fav_user")
     fun loadAllFav(): LiveData<List<FavoriteUser>>
-//    @Query("SELECT * FROM user")
-//    fun getAll(): List<User>
-//
-//    @Query("SELECT * FROM user WHERE uid IN (:userIds)")
-//    fun loadAllByIds(userIds: IntArray): List<User>
-//
-//    @Query("SELECT * FROM user WHERE first_name LIKE :first AND " +
-//            "last_name LIKE :last LIMIT 1")
-//    fun findByName(first: String, last: String): User
 
-    @Insert
-    fun insertAll(vararg username: FavoriteUser)
+    @Delete
+    suspend fun deleteFav(favoriteUser: FavoriteUser)
 
-//    @Delete
-//    fun delete(user: User)
+    @Query("SELECT count(*) FROM fav_user WHERE id = :id")
+    suspend fun getFavUser(id: Int): Int
+
 }
