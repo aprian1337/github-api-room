@@ -74,7 +74,5 @@ class DetailUserViewModel(private val repository: MainRepository) : ViewModel() 
         return result
     }
 
-    fun getUser() : LiveData<User>{
-        return user
-    }
+    fun getUser() : LiveData<User> = user
 }

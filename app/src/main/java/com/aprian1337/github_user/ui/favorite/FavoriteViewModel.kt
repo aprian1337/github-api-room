@@ -7,7 +7,7 @@ import com.aprian1337.github_user.data.room.AppDatabase
 import com.aprian1337.github_user.data.room.FavoriteUser
 import com.aprian1337.github_user.repository.RoomRepository
 
-class FavoriteViewModel() : ViewModel(){
+class FavoriteViewModel : ViewModel(){
 
     private lateinit var readAllData : LiveData<List<FavoriteUser>>
 
