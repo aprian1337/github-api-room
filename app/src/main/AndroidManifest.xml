@@ -21,19 +21,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GithubUser">
+
         <provider
             android:name=".data.provider.FavoriteProvider"
             android:authorities="com.aprian1337.github_user"
             android:enabled="true"
             android:exported="true"
             android:readPermission="com.aprian1337.github_user.READ_DATABASE"
-            android:writePermission="com.aprian1337.github_user.WRITE_DATABASE"/>
+            android:writePermission="com.aprian1337.github_user.WRITE_DATABASE" />
 
         <receiver
             android:name=".ui.setting.AlarmReceiver"
             android:enabled="true"
-            android:exported="true"
-            />
+            android:exported="true" />
 
         <activity android:name=".ui.favorite.FavoriteActivity" />
         <activity android:name=".ui.setting.SettingActivity" />

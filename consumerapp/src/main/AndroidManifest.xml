@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aprian1337.consumerapp">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="com.aprian1337.github_user.READ_DATABASE" />
+    <uses-permission android:name="com.aprian1337.github_user.WRITE_DATABASE" />
 
     <application
         android:allowBackup="true"
@@ -9,13 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.GithubUser">
-        <activity android:name=".MainActivity">
+
+        <activity android:name=".ui.favorite.FavoriteActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
-
+    <queries>
+        <package android:name="com.aprian1337.github_user" />
+    </queries>
 </manifest>
