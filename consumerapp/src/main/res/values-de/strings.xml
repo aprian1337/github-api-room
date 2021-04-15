@@ -20,4 +20,5 @@
     <string name="menu">menu</string>
     <string name="reminder_message">Aufwachen! Lassen Sie uns unsere liebste Anwendung öffnen, um großartige Leute auf Github zu sehen :)</string>
     <string name="general">General</string>
+    <string name="widget_text">Gibeng Banner</string>
 </resources>

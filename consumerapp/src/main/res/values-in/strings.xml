@@ -20,4 +20,5 @@
     <string name="menu">menu</string>
     <string name="reminder_message">Ayo bangun! Yuk kita buka aplikasi tersayang kita ini untuk melihat orang hebat di github :)</string>
     <string name="general">General</string>
+    <string name="widget_text">Gibeng Banner</string>
 </resources>
